@@ -9,9 +9,26 @@ import SwiftUI
 
 @main
 struct AdviceSelectorApp: App {
+    
+    @State private var savedAdvice: [SavedAdvice] = [] // empty
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            TabView {
+                // Loose ends. (Models aren't done correctly, which correspond to ContentView)
+                ContentView(savedAdvice: $savedAdvice)
+                    .tabItem {
+                        Image(systemName: "swatchpalette")
+                        Text("Browse")
+                    }
+                
+                SavedAdviceView(savedAdvice: $savedAdvice)
+                    .tabItem {
+                        Image(systemName: "list.dash")
+                        Text("Review")
+                    }
+                
+            }
         }
     }
 }
